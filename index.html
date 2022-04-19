@@ -34,7 +34,7 @@
         if (location.href.indexOf("code") !== -1) { // Detect if you logged in or not
           const code = location.href.substring(location.href.indexOf("code") + 5, location.href.length); // Get the code OAUTH gives you
           const request = new XMLHttpRequest(); // Create a new XMLHttpRequest
-          request.open("POST", "http://localhost:7100/user"); // Open the XMLHttpRequest
+          request.open("POST", "https://wionzu.github.io/user"); // Open the XMLHttpRequest
           request.send(code); // Send the code in the request
           request.onload = () => { // Will run when the request is loaded
             if (request.status === 500) { // Error
