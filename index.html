@@ -1,71 +1,52 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel='stylesheet' href='assets/style.css'>
-        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <link rel="icon" type="image/png" href="assets/logo.svg"/>
-        <title>
-            SunnyCity - Strona Główna
-        </title>
-
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/v4-shims.css">
-    </head>
-    <body>
-        <div class="bg">
-        <a href="index.html"><j><img class="logo2" src="assets/logo.svg"></j></a>
-        <header>
-            <a href="https://docs.google.com/document/d/1sE7h0p8oNoJdKdHy8woHb1aC6fgYygA5XHJpoFmiMJk/edit#heading=h.vhwf8o226leu" target="_blank"><h3><i class="fas fa-scroll"></i> Regulamin</h3></a>
-            <a href="podania.html"><h3><i class="fas fa-file-archive"></i> Podania</h3></a>
-            <a href="https://discord.gg/zpqyztPa7a" target="_blank"><h3><i class="fab fa-discord"></i> Discord</h3></a>
-        </header>
-
-        <div class="overlay"></div>
-        <img class="logo" src="assets/logo.svg">
-        </div>
-
-        <div class="bgcard">
-            <div class="kwadrat">
-                <div class="kwadrat"><i class="fas fa-desktop" style="color: #f8b201; font-size: 200px;  margin: 0px auto; margin-left: 30%; margin-top: 30%; text-align:center;"></i></div>
-            </div>
-            <h1>
-                <text style="font-size: 35px; font-weight: 600; filter: drop-shadow(0px 0px 6px rgb(20, 20, 20));">INTERFEJS</text><br>
-                Stylowy i charakterystyczny interfejs, który jest rozpoznawalny. <br>
-                Ten kolor jest kojarzony z naszym serwerem
-            </h1>
-        </div>
-
-        <div class="bgcard">
-            <h1 style="text-align: right;">
-                <text style="font-size: 35px; font-weight: 600; filter: drop-shadow(0px 0px 6px rgb(20, 20, 20));">LSPD</text><br>
-                Posiadamy liczne grono policjantów oraz stale otwartą rekrutacje, która pozwoli Ci wstąpić w ich szeregi
-            </h1>
-            <div class="kwadrat2"><i class="fas fa-taxi" style="color: #f8b201; font-size: 200px;  margin: 0px auto; margin-left: 30%; margin-top: 30%; text-align:center;"></i></div>
-        </div>
-
-        <div class="bgcard">
-            <div class="kwadrat">
-                <i class="fas fa-user-tie" style="color: #f8b201; font-size: 200px;  margin: 0px auto; margin-left: 30%; margin-top: 30%; text-align:center;"></i>
-            </div>
-            <h1 style="text-align: left;">
-                <text style="font-size: 35px; font-weight: 600; filter: drop-shadow(0px 0px 6px rgb(20, 20, 20));">NAPADY</text><br>
-                Posiadamy rozwinięty system napadów, który urozmaici Twoją rozgrywkę
-            </h1>
-        </div>
-
-        <div class="bgcard">
-            <h1 style="text-align: right;">
-                <text style="font-size: 35px; font-weight: 600; filter: drop-shadow(0px 0px 6px rgb(20, 20, 20));">DISCORD</text><br>
-                Prosty i przejrzysty serwer Discord ułatwia korzystanie z serwera
-            </h1>
-            <div class="kwadrat2">
-                <iframe src="https://ptb.discord.com/widget?id=802531813322391553&theme=dark" width="350" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-            </div>
-        </div>
-
-        <footer><div class="bgfooter"><h2>Copyright © 2021 | <text style="font-weight: 600; color: #f8b201; filter: drop-shadow(0px 0px 6px rgb(20, 20, 20));">SunnyCity</text> | Designed by <a href="https://discordapp.com/users/597426724208246807/" style="color: #f8b201; margin-left: 0 !important;">wionzu</text></h2></div></footer>
-        <script src="assets/script.js"></script>
-    </body>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Discord OAUTH</title>           
+    <style>
+      * {
+        text-align: center;
+        margin: 0px auto;
+      }
+      #welcome_txt {
+        font-size: 24px;
+      }
+      #login-link {
+        background-color: whitesmoke;
+        border-radius: 8px;
+        color: black;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+      }
+      #login-link:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <a id='login-link' href='https://discord.com/api/oauth2/authorize?client_id=941234115150245919&redirect_uri=https%3A%2F%2Fwionzu.github.io%2F&response_type=code&scope=identify%20guilds'>Login with Discord</a><br><br>
+    <p id='welcome_txt'></p>
+    <script>
+      window.onload = function() {
+        if (location.href.indexOf("code") !== -1) { // Detect if you logged in or not
+          const code = location.href.substring(location.href.indexOf("code") + 5, location.href.length); // Get the code OAUTH gives you
+          const request = new XMLHttpRequest(); // Create a new XMLHttpRequest
+          request.open("POST", "http://localhost:7100/user"); // Open the XMLHttpRequest
+          request.send(code); // Send the code in the request
+          request.onload = () => { // Will run when the request is loaded
+            if (request.status === 500) { // Error
+              document.getElementById('welcome_txt').innerText = `There was an error with that. Please try logging in again. Error Code: ${request.status}`;
+            } else if (request.status === 200) { // Successful
+              document.getElementById("welcome_txt").innerText = `Welcome, ${req.responseText}!`
+            } else { // Other
+              document.getElementById('welcome_txt').innerText = `An error occured. Please try logging in again. Error Code: ${req.status}`;
+            }
+          }
+        }
+      }
+    </script>
+  </body>        
 </html>
